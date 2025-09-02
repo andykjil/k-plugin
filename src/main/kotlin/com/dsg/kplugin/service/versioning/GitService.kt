@@ -1,5 +1,6 @@
-package com.dsg.kplugin.service
+package com.dsg.kplugin.service.versioning
 
+import USER_NAME_TEMPLATE
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import git4idea.GitUtil
@@ -19,9 +20,9 @@ class GitService {
         ApplicationManager.getApplication().executeOnPooledThread {
             val repoRoot = GitUtil.getRepositoryManager(project).repositories.firstOrNull()?.root
             val name = if (repoRoot != null) {
-                GitConfigUtil.getValue(project, repoRoot, "user.name") ?: System.getProperty("user.name")
+                GitConfigUtil.getValue(project, repoRoot, USER_NAME_TEMPLATE) ?: System.getProperty("user.name")
             } else {
-                System.getProperty("user.name")
+                System.getProperty(USER_NAME_TEMPLATE)
             }
             ApplicationManager.getApplication().invokeLater {
                 callback(name)

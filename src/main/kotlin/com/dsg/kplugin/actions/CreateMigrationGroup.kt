@@ -2,9 +2,9 @@ package com.dsg.kplugin.actions
 
 import MIGRATION_TITLE
 import com.dsg.kplugin.model.enums.BumpType
-import com.dsg.kplugin.service.GitService
 import com.dsg.kplugin.service.MigrationService
-import com.dsg.kplugin.service.VersionService
+import com.dsg.kplugin.service.versioning.GitService
+import com.dsg.kplugin.service.versioning.VersionService
 import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent

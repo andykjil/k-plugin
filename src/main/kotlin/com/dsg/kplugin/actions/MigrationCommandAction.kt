@@ -4,9 +4,9 @@ import CHANGELOG_PATH
 import MIGRATION_CREATED
 import MIGRATION_CREATE_ERROR
 import com.dsg.kplugin.model.enums.BumpType
-import com.dsg.kplugin.service.GitService
 import com.dsg.kplugin.service.MigrationService
-import com.dsg.kplugin.service.VersionService
+import com.dsg.kplugin.service.versioning.GitService
+import com.dsg.kplugin.service.versioning.VersionService
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.project.DumbAwareAction

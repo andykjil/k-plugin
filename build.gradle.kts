@@ -20,6 +20,11 @@ dependencies {
         create("IC", "2025.1.4.1")
         bundledPlugin("Git4Idea")
     }
+    testImplementation("io.kotest:kotest-property:5.7.2")
+    testImplementation("io.kotest:kotest-runner-junit5:5.7.2")
+    testImplementation("io.kotest:kotest-assertions-core:5.7.2")
+    testImplementation("io.kotest:kotest-framework-engine:5.7.2")
+    testImplementation("io.mockk:mockk:1.13.10")
 }
 
 intellijPlatform {
@@ -48,10 +53,14 @@ kotlin {
 }
 
 ktlint {
-    version.set("0.50.0") // версия ktlint
+    version.set("0.50.0")
     debug.set(true)
     android.set(false)
-    outputColorName.set("RED") // цвет вывода ошибок
-    ignoreFailures.set(false) // если true, сборка не сломается при ошибках
-    enableExperimentalRules.set(true) // включение экспериментальных правил
+    outputColorName.set("RED")
+    ignoreFailures.set(false)
+    enableExperimentalRules.set(true)
+}
+
+tasks.test {
+    useJUnitPlatform()
 }

@@ -6,6 +6,7 @@ import com.dsg.kplugin.service.filegenerator.MigrationBuilder
 import com.dsg.kplugin.service.filegenerator.MigrationFileGenerator
 import com.dsg.kplugin.service.filegenerator.RollbackGenerator
 import com.dsg.kplugin.service.filegenerator.SqlGenerator
+import com.dsg.kplugin.service.versioning.GitService
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 
