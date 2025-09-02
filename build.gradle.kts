@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "2.1.0"
-    id("org.jetbrains.intellij.platform") version "2.7.1"
+    id("org.jetbrains.intellij.platform") version "2.7.2"
 }
 
 group = "com.dsg"
@@ -17,8 +17,7 @@ repositories {
 dependencies {
     intellijPlatform {
         create("IC", "2025.1.4.1")
-        testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
-
+        bundledPlugin("Git4Idea")
     }
 }
 

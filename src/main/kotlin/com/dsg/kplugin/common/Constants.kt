@@ -4,6 +4,9 @@ const val CHANGELOG_DEFAULT_VERSION = "1.0.0"
 const val MIGRATION_CREATED = "Миграция для версии %s создана."
 const val MIGRATION_CREATE_ERROR = "Ошибка создания миграции %s: %s"
 const val VERSION_REGEXP = """^(\d+)\.(\d+)\.(\d+)$"""
+const val USER_NAME_TEMPLATE = "user.name"
+const val MIGRATION_DIRECTORY = "db"
+const val CHANGELOG_MASTER_FILENAME = "db.changelog-master.yaml"
 
 const val CHANGELOG_CONTENT = """
             databaseChangeLog:
