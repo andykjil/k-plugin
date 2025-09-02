@@ -11,9 +11,12 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.startup.StartupActivity
 
-class CreateMigrationGroup : ActionGroup(
-    MIGRATION_TITLE, true
-), StartupActivity.DumbAware {
+class CreateMigrationGroup :
+    ActionGroup(
+        MIGRATION_TITLE,
+        true,
+    ),
+    StartupActivity.DumbAware {
 
     private val gitService = GitService()
     private val versionService = VersionService()

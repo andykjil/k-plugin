@@ -1,7 +1,11 @@
 package com.dsg.kplugin.service
 
 import MIGRATION_DIRECTORY
-import com.dsg.kplugin.service.filegenerator.*
+import com.dsg.kplugin.service.filegenerator.ChangelogGenerator
+import com.dsg.kplugin.service.filegenerator.MigrationBuilder
+import com.dsg.kplugin.service.filegenerator.MigrationFileGenerator
+import com.dsg.kplugin.service.filegenerator.RollbackGenerator
+import com.dsg.kplugin.service.filegenerator.SqlGenerator
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 
@@ -18,7 +22,7 @@ class MigrationService {
         project: Project,
         changelogDir: VirtualFile,
         newVersion: String,
-        userName: String
+        userName: String,
     ) {
         val branchName = GitService().getCurrentBranch(project) ?: "feature-branch"
         val prefix = branchFilePrefix(branchName)
@@ -31,7 +35,7 @@ class MigrationService {
             prefix = prefix,
             changelogGenerator = changelogGenerator,
             sqlGenerator = sqlGenerator,
-            rollbackGenerator = rollbackGenerator
+            rollbackGenerator = rollbackGenerator,
         )
         builder.build()
     }

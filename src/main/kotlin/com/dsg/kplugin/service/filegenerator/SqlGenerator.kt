@@ -5,7 +5,7 @@ class SqlGenerator : MigrationFileGenerator {
         newVersion: String,
         userName: String,
         sqlFileName: String,
-        rollbackFileName: String
+        rollbackFileName: String,
     ): String {
         return "-- SQL миграции для версии $newVersion\n"
     }

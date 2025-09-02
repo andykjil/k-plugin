@@ -7,14 +7,14 @@ class ChangelogGenerator : MigrationFileGenerator {
         newVersion: String,
         userName: String,
         sqlFileName: String,
-        rollbackFileName: String
+        rollbackFileName: String,
     ): String {
         return CHANGELOG_CONTENT.format(
             newVersion,
             userName,
             newVersion,
             sqlFileName,
-            rollbackFileName
+            rollbackFileName,
         ).trimIndent()
     }
 

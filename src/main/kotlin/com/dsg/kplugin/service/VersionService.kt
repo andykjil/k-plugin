@@ -11,7 +11,6 @@ import com.dsg.kplugin.service.versioning.bumper.PatchVersionBumper
 import com.dsg.kplugin.service.versioning.bumper.VersionBumper
 import com.intellij.openapi.vfs.VirtualFile
 
-
 class VersionService {
 
     private val comparator: VersionComparator = SemanticVersionComparator()

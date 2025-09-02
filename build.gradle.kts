@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "2.1.0"
     id("org.jetbrains.intellij.platform") version "2.7.2"
+    id("org.jlleitschuh.gradle.ktlint") version "11.5.1"
 }
 
 group = "com.dsg"
@@ -44,4 +45,13 @@ kotlin {
     compilerOptions {
         jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
     }
+}
+
+ktlint {
+    version.set("0.50.0") // версия ktlint
+    debug.set(true)
+    android.set(false)
+    outputColorName.set("RED") // цвет вывода ошибок
+    ignoreFailures.set(false) // если true, сборка не сломается при ошибках
+    enableExperimentalRules.set(true) // включение экспериментальных правил
 }

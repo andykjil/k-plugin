@@ -19,7 +19,7 @@ class MigrationCommandAction(
     private val bumpType: BumpType,
     private val gitService: GitService,
     private val versionService: VersionService,
-    private val migrationService: MigrationService
+    private val migrationService: MigrationService,
 ) : DumbAwareAction(text) {
 
     override fun actionPerformed(e: AnActionEvent) {

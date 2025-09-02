@@ -15,22 +15,22 @@ class MigrationBuilder(
     private val prefix: String,
     private val changelogGenerator: MigrationFileGenerator,
     private val sqlGenerator: MigrationFileGenerator,
-    private val rollbackGenerator: MigrationFileGenerator
+    private val rollbackGenerator: MigrationFileGenerator,
 ) {
     fun build() {
         WriteCommandAction.runWriteCommandAction(project) {
             val newChangelogDir = createDirectory()
             val changelogFile = createFile(
                 parent = newChangelogDir,
-                fileName = changelogGenerator.fileName(newVersion, prefix)
+                fileName = changelogGenerator.fileName(newVersion, prefix),
             )
             val sqlFile = createFile(
                 parent = newChangelogDir,
-                fileName = sqlGenerator.fileName(newVersion, prefix)
+                fileName = sqlGenerator.fileName(newVersion, prefix),
             )
             val rollbackFile = createFile(
                 parent = newChangelogDir,
-                fileName = rollbackGenerator.fileName(newVersion, prefix)
+                fileName = rollbackGenerator.fileName(newVersion, prefix),
             )
             val masterFile = changelogDir.findChild(CHANGELOG_MASTER_FILENAME)
                 ?: changelogDir.createChildData(this, CHANGELOG_MASTER_FILENAME)
@@ -41,16 +41,16 @@ class MigrationBuilder(
                     newVersion,
                     userName,
                     sqlFile.name,
-                    rollbackFile.name
-                )
+                    rollbackFile.name,
+                ),
             )
             writeFileContent(
                 file = sqlFile,
-                content = sqlGenerator.generateContent(newVersion, userName)
+                content = sqlGenerator.generateContent(newVersion, userName),
             )
             writeFileContent(
                 file = rollbackFile,
-                content = rollbackGenerator.generateContent(newVersion, userName)
+                content = rollbackGenerator.generateContent(newVersion, userName),
             )
             updateMasterFile(masterFile)
         }
