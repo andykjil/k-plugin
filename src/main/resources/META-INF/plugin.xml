@@ -1,0 +1,24 @@
+<idea-plugin>
+    <id>com.dsg.k-plugin</id>
+    <name>K-plugin</name>
+    <vendor url="https://www.yourcompany.com">YourCompany</vendor>
+    <version>1.0.0</version>
+    <description><![CDATA[
+        Enter short description for your plugin here.<br>
+        <em>most HTML tags may be used</em>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+        <group id="CreateMigrationGroup"
+               class="com.dsg.kplugin.actions.CreateMigrationGroup"
+               popup="true">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+
+        </group>
+    </actions>
+</idea-plugin>
