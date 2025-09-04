@@ -1,13 +1,11 @@
 package com.dsg.kplugin.actions
 
-import com.dsg.kplugin.common.CHANGELOG_PATH
 import com.dsg.kplugin.common.MIGRATION_CREATED
 import com.dsg.kplugin.common.MIGRATION_CREATE_ERROR
+import com.dsg.kplugin.common.SUCCESS
 import com.dsg.kplugin.model.enums.BumpType
 import com.dsg.kplugin.service.MigrationService
-import com.dsg.kplugin.service.versioning.GitService
 import com.dsg.kplugin.service.versioning.VersionService
-import com.dsg.kplugin.settings.MigrationPluginSettings
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.project.DumbAwareAction
@@ -16,18 +14,15 @@ import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.wm.StatusBar
 
 class MigrationCommandAction(
-    text: String,
     private val bumpType: BumpType,
-    private val gitService: GitService,
     private val versionService: VersionService,
     private val migrationService: MigrationService,
-) : DumbAwareAction(text) {
+) : DumbAwareAction(bumpType.text) {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
 
-        val dbModule = migrationService.findDbModule(project) ?: return
-        val changelogDir = dbModule.findFileByRelativePath(CHANGELOG_PATH)
+        val changelogDir = migrationService.findChangelogDir(project)
         if (changelogDir == null || !changelogDir.isDirectory) {
             return
         }
@@ -35,25 +30,13 @@ class MigrationCommandAction(
         val lastVersion = versionService.findLastChangelog(changelogDir)
         val newVersion = versionService.bumpVersion(lastVersion, bumpType)
 
-        val settings = MigrationPluginSettings.getInstance().state
-
-        // Получаем имя автора асинхронно
-        gitService.getGitUserName(project) { gitUser ->
-            val author = if (settings.useCustomUser && settings.customUserName.isNotBlank()) {
-                settings.customUserName
-            } else {
-                gitUser
-            }
-
-            // Запускаем запись файлов в write action
-            WriteCommandAction.runWriteCommandAction(project) {
-                try {
-                    migrationService.createMigrationFiles(project, changelogDir, newVersion, author)
-                    notify(project, MIGRATION_CREATED.format(newVersion))
-                    Messages.showInfoMessage(project, MIGRATION_CREATED.format(newVersion), "Успех")
-                } catch (ex: Exception) {
-                    notify(project, MIGRATION_CREATE_ERROR.format(newVersion, ex.message))
-                }
+        WriteCommandAction.runWriteCommandAction(project) {
+            try {
+                migrationService.createMigrationFiles(project, changelogDir, newVersion)
+                notify(project, MIGRATION_CREATED.format(newVersion))
+                Messages.showInfoMessage(project, MIGRATION_CREATED.format(newVersion), SUCCESS)
+            } catch (ex: Exception) {
+                notify(project, MIGRATION_CREATE_ERROR.format(newVersion, ex.message))
             }
         }
     }

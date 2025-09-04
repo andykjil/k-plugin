@@ -32,5 +32,9 @@
             <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
 
         </group>
+        <action id="com.dsg.kplugin.OpenPluginSettingsAction"
+                class="com.dsg.kplugin.actions.OpenPluginSettingsAction"
+                text="Настройки"
+                description="Открыть настройки плагина"/>
     </actions>
 </idea-plugin>
