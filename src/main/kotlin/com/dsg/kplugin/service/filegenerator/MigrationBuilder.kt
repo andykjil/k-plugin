@@ -1,7 +1,7 @@
 package com.dsg.kplugin.service.filegenerator
 
-import CHANGELOG_INCLUDE_CONTENT
-import CHANGELOG_MASTER_FILENAME
+import com.dsg.kplugin.common.CHANGELOG_INCLUDE_CONTENT
+import com.dsg.kplugin.common.CHANGELOG_MASTER_FILENAME
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtil

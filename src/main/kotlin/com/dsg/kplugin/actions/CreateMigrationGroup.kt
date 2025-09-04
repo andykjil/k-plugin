@@ -1,6 +1,6 @@
 package com.dsg.kplugin.actions
 
-import MIGRATION_TITLE
+import com.dsg.kplugin.common.MIGRATION_TITLE
 import com.dsg.kplugin.model.enums.BumpType
 import com.dsg.kplugin.service.MigrationService
 import com.dsg.kplugin.service.versioning.GitService

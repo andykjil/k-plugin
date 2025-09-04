@@ -1,6 +1,6 @@
 package com.dsg.kplugin.service.versioning
 
-import CHANGELOG_DEFAULT_VERSION
+import com.dsg.kplugin.common.CHANGELOG_DEFAULT_VERSION
 import com.dsg.kplugin.model.enums.BumpType
 import com.intellij.openapi.vfs.VirtualFile
 import io.kotest.core.spec.style.FeatureSpec

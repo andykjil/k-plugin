@@ -12,6 +12,17 @@
     <depends>Git4Idea</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <toolWindow
+                id="Migrations"
+                anchor="left"
+                factoryClass="com.dsg.kplugin.components.MigrationToolWindowFactory"
+                icon="/icons/pluginIcon.svg"
+        />
+        <projectConfigurable
+                displayName="k plugin"
+                instance="com.dsg.kplugin.components.MigrationSettingsConfigurable"/>
+        <postStartupActivity implementation="com.dsg.kplugin.components.LoadUserOnStartup"/>
+
     </extensions>
 
     <actions>

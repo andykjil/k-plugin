@@ -1,6 +1,6 @@
 package com.dsg.kplugin.service
 
-import MIGRATION_DIRECTORY
+import com.dsg.kplugin.common.MIGRATION_DIRECTORY
 import com.dsg.kplugin.service.filegenerator.MigrationBuilder
 import com.dsg.kplugin.service.versioning.GitService
 import com.intellij.openapi.project.Project

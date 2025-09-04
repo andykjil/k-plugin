@@ -1,6 +1,6 @@
 package com.dsg.kplugin.service.versioning
 
-import USER_NAME_TEMPLATE
+import com.dsg.kplugin.common.USER_NAME_TEMPLATE
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import git4idea.GitUtil
@@ -20,13 +20,22 @@ class GitService {
         ApplicationManager.getApplication().executeOnPooledThread {
             val repoRoot = GitUtil.getRepositoryManager(project).repositories.firstOrNull()?.root
             val name = if (repoRoot != null) {
-                GitConfigUtil.getValue(project, repoRoot, USER_NAME_TEMPLATE) ?: System.getProperty("user.name")
+                GitConfigUtil.getValue(project, repoRoot, USER_NAME_TEMPLATE) ?: System.getProperty(USER_NAME_TEMPLATE)
             } else {
                 System.getProperty(USER_NAME_TEMPLATE)
             }
             ApplicationManager.getApplication().invokeLater {
                 callback(name)
             }
+        }
+    }
+
+    fun getDefaultUserNameSync(project: Project): String {
+        val repoRoot = GitRepositoryManager.getInstance(project).repositories.firstOrNull()?.root
+        return if (repoRoot != null) {
+            GitConfigUtil.getValue(project, repoRoot, USER_NAME_TEMPLATE) ?: System.getProperty(USER_NAME_TEMPLATE)
+        } else {
+            System.getProperty(USER_NAME_TEMPLATE)
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.dsg.kplugin.model
 
-import VERSION_REGEXP
+import com.dsg.kplugin.common.VERSION_REGEXP
 
 data class SemanticVersion(val major: Int, val minor: Int, val patch: Int) : Comparable<SemanticVersion> {
     companion object {

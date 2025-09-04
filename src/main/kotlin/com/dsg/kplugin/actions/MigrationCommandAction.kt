@@ -1,12 +1,13 @@
 package com.dsg.kplugin.actions
 
-import CHANGELOG_PATH
-import MIGRATION_CREATED
-import MIGRATION_CREATE_ERROR
+import com.dsg.kplugin.common.CHANGELOG_PATH
+import com.dsg.kplugin.common.MIGRATION_CREATED
+import com.dsg.kplugin.common.MIGRATION_CREATE_ERROR
 import com.dsg.kplugin.model.enums.BumpType
 import com.dsg.kplugin.service.MigrationService
 import com.dsg.kplugin.service.versioning.GitService
 import com.dsg.kplugin.service.versioning.VersionService
+import com.dsg.kplugin.settings.MigrationPluginSettings
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.project.DumbAwareAction
@@ -34,10 +35,20 @@ class MigrationCommandAction(
         val lastVersion = versionService.findLastChangelog(changelogDir)
         val newVersion = versionService.bumpVersion(lastVersion, bumpType)
 
-        gitService.getGitUserName(project) { userName ->
+        val settings = MigrationPluginSettings.getInstance().state
+
+        // Получаем имя автора асинхронно
+        gitService.getGitUserName(project) { gitUser ->
+            val author = if (settings.useCustomUser && settings.customUserName.isNotBlank()) {
+                settings.customUserName
+            } else {
+                gitUser
+            }
+
+            // Запускаем запись файлов в write action
             WriteCommandAction.runWriteCommandAction(project) {
                 try {
-                    migrationService.createMigrationFiles(project, changelogDir, newVersion, userName)
+                    migrationService.createMigrationFiles(project, changelogDir, newVersion, author)
                     notify(project, MIGRATION_CREATED.format(newVersion))
                     Messages.showInfoMessage(project, MIGRATION_CREATED.format(newVersion), "Успех")
                 } catch (ex: Exception) {
