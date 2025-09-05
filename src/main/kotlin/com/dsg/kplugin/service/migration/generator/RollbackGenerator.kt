@@ -1,16 +1,16 @@
-package com.dsg.kplugin.service.filegenerator
+package com.dsg.kplugin.service.migration.generator
 
-class SqlGenerator : MigrationFileGenerator {
+class RollbackGenerator : MigrationFileGenerator {
     override fun generateContent(
         newVersion: String,
         userName: String,
         sqlFileName: String,
         rollbackFileName: String,
     ): String {
-        return "-- SQL миграции для версии $newVersion\n"
+        return "-- SQL отката для версии $newVersion\n"
     }
 
     override fun fileName(newVersion: String, prefix: String): String {
-        return "$prefix.sql"
+        return "$prefix-rollback.sql"
     }
 }

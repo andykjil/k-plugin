@@ -1,6 +1,6 @@
-package com.dsg.kplugin.components
+package com.dsg.kplugin.components.settings.migration
 
-import com.dsg.kplugin.common.K_PLUGIN_SETTINGS
+import com.dsg.kplugin.common.constants.K_PLUGIN_SETTINGS
 import com.dsg.kplugin.service.versioning.GitService
 import com.dsg.kplugin.settings.MigrationPluginSettings
 import com.intellij.openapi.options.Configurable

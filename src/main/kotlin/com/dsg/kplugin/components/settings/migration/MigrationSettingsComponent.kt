@@ -1,7 +1,7 @@
-package com.dsg.kplugin.components
+package com.dsg.kplugin.components.settings.migration
 
-import com.dsg.kplugin.common.USER_CUSTOM_CHECKBOX_TEXT
-import com.dsg.kplugin.common.USER_NAME_TEXT
+import com.dsg.kplugin.common.constants.USER_CUSTOM_CHECKBOX_TEXT
+import com.dsg.kplugin.common.constants.USER_NAME_TEXT
 import com.dsg.kplugin.service.versioning.GitService
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project

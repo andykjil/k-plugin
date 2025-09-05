@@ -1,10 +1,10 @@
-package com.dsg.kplugin.components
+package com.dsg.kplugin.components.settings.migration
 
-import com.dsg.kplugin.actions.OpenPluginSettingsAction
-import com.dsg.kplugin.common.TOOLBAR_LOGS_TAB_TITLE
-import com.dsg.kplugin.common.TOOLBAR_LOGS_TITLE
-import com.dsg.kplugin.common.TOOLBAR_MIGRATIONS_TAB_TITLE
-import com.dsg.kplugin.service.MigrationService
+import com.dsg.kplugin.actions.settings.OpenPluginSettingsAction
+import com.dsg.kplugin.common.constants.TOOLBAR_LOGS_TAB_TITLE
+import com.dsg.kplugin.common.constants.TOOLBAR_LOGS_TITLE
+import com.dsg.kplugin.common.constants.TOOLBAR_MIGRATIONS_TAB_TITLE
+import com.dsg.kplugin.service.migration.MigrationService
 import com.dsg.kplugin.service.versioning.VersionService
 import com.dsg.kplugin.ui.MigrationsPanel
 import com.intellij.openapi.project.Project

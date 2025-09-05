@@ -1,5 +1,6 @@
 package com.dsg.kplugin.service.filegenerator
 
+import com.dsg.kplugin.service.migration.generator.ChangelogGenerator
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.shouldBe
 

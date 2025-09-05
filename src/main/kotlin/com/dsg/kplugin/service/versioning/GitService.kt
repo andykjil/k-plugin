@@ -1,6 +1,6 @@
 package com.dsg.kplugin.service.versioning
 
-import com.dsg.kplugin.common.USER_NAME_TEMPLATE
+import com.dsg.kplugin.common.constants.USER_NAME_TEMPLATE
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import git4idea.GitUtil

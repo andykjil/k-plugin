@@ -1,8 +1,8 @@
 package com.dsg.kplugin.service.versioning
 
-import com.dsg.kplugin.common.CHANGELOG_DEFAULT_VERSION
-import com.dsg.kplugin.model.SemanticVersion
+import com.dsg.kplugin.common.constants.CHANGELOG_DEFAULT_VERSION
 import com.dsg.kplugin.model.enums.BumpType
+import com.dsg.kplugin.model.version.SemanticVersion
 import com.dsg.kplugin.service.versioning.bumper.MajorVersionBumper
 import com.dsg.kplugin.service.versioning.bumper.MinorVersionBumper
 import com.dsg.kplugin.service.versioning.bumper.PatchVersionBumper

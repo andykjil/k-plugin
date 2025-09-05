@@ -1,4 +1,4 @@
-package com.dsg.kplugin.service.filegenerator
+package com.dsg.kplugin.service.migration.generator
 
 interface MigrationFileGenerator {
     fun generateContent(

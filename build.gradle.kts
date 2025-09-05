@@ -19,6 +19,7 @@ dependencies {
     intellijPlatform {
         create("IC", "2025.1.4.1")
         bundledPlugin("Git4Idea")
+        bundledPlugin("org.jetbrains.kotlin")
     }
     testImplementation("io.kotest:kotest-property:5.7.2")
     testImplementation("io.kotest:kotest-runner-junit5:5.7.2")

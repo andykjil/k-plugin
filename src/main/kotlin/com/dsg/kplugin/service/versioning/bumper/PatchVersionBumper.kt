@@ -1,6 +1,6 @@
 package com.dsg.kplugin.service.versioning.bumper
 
-import com.dsg.kplugin.model.SemanticVersion
+import com.dsg.kplugin.model.version.SemanticVersion
 
 class PatchVersionBumper : VersionBumper {
     override fun bump(version: SemanticVersion): SemanticVersion {

@@ -1,12 +1,12 @@
-package com.dsg.kplugin.service
+package com.dsg.kplugin.service.migration
 
-import com.dsg.kplugin.common.CHANGELOG_PATH
-import com.dsg.kplugin.common.MIGRATION_DIRECTORY
-import com.dsg.kplugin.service.filegenerator.ChangelogGenerator
-import com.dsg.kplugin.service.filegenerator.MigrationBuilder
-import com.dsg.kplugin.service.filegenerator.MigrationFileGenerator
-import com.dsg.kplugin.service.filegenerator.RollbackGenerator
-import com.dsg.kplugin.service.filegenerator.SqlGenerator
+import com.dsg.kplugin.common.constants.CHANGELOG_PATH
+import com.dsg.kplugin.common.constants.MIGRATION_DIRECTORY
+import com.dsg.kplugin.service.migration.generator.ChangelogGenerator
+import com.dsg.kplugin.service.migration.generator.MigrationBuilder
+import com.dsg.kplugin.service.migration.generator.MigrationFileGenerator
+import com.dsg.kplugin.service.migration.generator.RollbackGenerator
+import com.dsg.kplugin.service.migration.generator.SqlGenerator
 import com.dsg.kplugin.service.versioning.GitService
 import com.dsg.kplugin.settings.MigrationPluginSettings
 import com.intellij.openapi.project.Project
@@ -26,7 +26,7 @@ class MigrationService {
         changelogDir: VirtualFile,
         newVersion: String,
     ) {
-        val settings = MigrationPluginSettings.getInstance().state
+        val settings = MigrationPluginSettings.Companion.getInstance().state
         val branchName = GitService().getCurrentBranch(project) ?: "feature-branch"
         val prefix = branchFilePrefix(branchName)
 

@@ -1,7 +1,8 @@
 package com.dsg.kplugin.service
 
-import com.dsg.kplugin.common.MIGRATION_DIRECTORY
-import com.dsg.kplugin.service.filegenerator.MigrationBuilder
+import com.dsg.kplugin.common.constants.MIGRATION_DIRECTORY
+import com.dsg.kplugin.service.migration.MigrationService
+import com.dsg.kplugin.service.migration.generator.MigrationBuilder
 import com.dsg.kplugin.service.versioning.GitService
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile

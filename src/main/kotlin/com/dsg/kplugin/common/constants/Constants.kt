@@ -1,6 +1,6 @@
-package com.dsg.kplugin.common
+package com.dsg.kplugin.common.constants
 
-const val PLUGIN_NAME = "k plugin"
+const val PLUGIN_NAME = "K-Plugin"
 const val CREATE_MIGRATION_TITLE = "Создать миграцию"
 const val TOOL_BAR_TOOLTIP = "k plugin"
 const val CHANGELOG_PATH = "src/main/resources/db.changelog"

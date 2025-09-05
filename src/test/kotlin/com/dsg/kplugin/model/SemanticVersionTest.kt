@@ -1,5 +1,6 @@
 package com.dsg.kplugin.model
 
+import com.dsg.kplugin.model.version.SemanticVersion
 import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.shouldBe
 

@@ -1,11 +1,11 @@
 package com.dsg.kplugin.ui
 
-import com.dsg.kplugin.common.CREATE_MIGRATION_TITLE
-import com.dsg.kplugin.common.LAST_VERSION
-import com.dsg.kplugin.common.MIGRATION_CREATED
-import com.dsg.kplugin.common.NEW_VERSION
+import com.dsg.kplugin.common.constants.CREATE_MIGRATION_TITLE
+import com.dsg.kplugin.common.constants.LAST_VERSION
+import com.dsg.kplugin.common.constants.MIGRATION_CREATED
+import com.dsg.kplugin.common.constants.NEW_VERSION
 import com.dsg.kplugin.model.enums.BumpType
-import com.dsg.kplugin.service.MigrationService
+import com.dsg.kplugin.service.migration.MigrationService
 import com.dsg.kplugin.service.versioning.VersionService
 import com.intellij.openapi.project.Project
 import java.awt.BorderLayout

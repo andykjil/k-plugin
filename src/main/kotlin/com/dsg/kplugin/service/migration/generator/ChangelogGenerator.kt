@@ -1,6 +1,6 @@
-package com.dsg.kplugin.service.filegenerator
+package com.dsg.kplugin.service.migration.generator
 
-import com.dsg.kplugin.common.CHANGELOG_CONTENT
+import com.dsg.kplugin.common.constants.CHANGELOG_CONTENT
 
 class ChangelogGenerator : MigrationFileGenerator {
     override fun generateContent(

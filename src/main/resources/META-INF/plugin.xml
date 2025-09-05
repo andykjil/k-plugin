@@ -15,25 +15,43 @@
         <toolWindow
                 id="Migrations"
                 anchor="left"
-                factoryClass="com.dsg.kplugin.components.MigrationToolWindowFactory"
+                factoryClass="com.dsg.kplugin.components.settings.migration.MigrationToolWindowFactory"
                 icon="/icons/pluginIcon.svg"
         />
-        <projectConfigurable
-                displayName="k plugin"
-                instance="com.dsg.kplugin.components.MigrationSettingsConfigurable"/>
-        <postStartupActivity implementation="com.dsg.kplugin.components.LoadUserOnStartup"/>
+        <postStartupActivity implementation="com.dsg.kplugin.components.startup.LoadUserOnStartup"/>
 
+        <projectConfigurable
+                id="com.dsg.kplugin.settings"
+                instance="com.dsg.kplugin.components.settings.main.SettingsMainPageConfigurable"
+                displayName="K-Plugin"/>
+
+        <projectConfigurable
+                parentId="com.dsg.kplugin.settings"
+                id="com.dsg.kplugin.settings.migrations"
+                displayName="Миграции"
+                instance="com.dsg.kplugin.components.settings.migration.MigrationSettingsConfigurable"/>
+
+        <projectConfigurable
+                parentId="com.dsg.kplugin.settings"
+                id="com.dsg.kplugin.settings.git"
+                displayName="Git"
+                instance="com.dsg.kplugin.components.settings.migration.MigrationSettingsConfigurable"/>
+
+        <projectConfigurable
+                parentId="com.dsg.kplugin.settings.migrations"
+                id="com.dsg.kplugin.settings.migrations.mapping"
+                displayName="Mapping"
+                instance="com.dsg.kplugin.components.settings.migration.MigrationSettingsMappingConfigurable"/>
     </extensions>
 
     <actions>
         <group id="CreateMigrationGroup"
-               class="com.dsg.kplugin.actions.CreateMigrationGroup"
+               class="com.dsg.kplugin.actions.migration.CreateMigrationGroup"
                popup="true">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
-
         </group>
         <action id="com.dsg.kplugin.OpenPluginSettingsAction"
-                class="com.dsg.kplugin.actions.OpenPluginSettingsAction"
+                class="com.dsg.kplugin.actions.settings.OpenPluginSettingsAction"
                 text="Настройки"
                 description="Открыть настройки плагина"/>
     </actions>

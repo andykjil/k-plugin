@@ -1,4 +1,4 @@
-package com.dsg.kplugin.components
+package com.dsg.kplugin.components.startup
 
 import com.dsg.kplugin.service.versioning.GitService
 import com.dsg.kplugin.settings.MigrationPluginSettings
@@ -8,7 +8,7 @@ import com.intellij.openapi.startup.ProjectActivity
 class LoadUserOnStartup : ProjectActivity {
 
     override suspend fun execute(project: Project) {
-        val settings = MigrationPluginSettings.getInstance().state
+        val settings = MigrationPluginSettings.Companion.getInstance().state
 
         if (!settings.useCustomUser || settings.customUserName.isBlank()) {
             GitService().getGitUserName(project) { gitUser ->

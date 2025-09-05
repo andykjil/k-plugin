@@ -1,8 +1,8 @@
-package com.dsg.kplugin.actions
+package com.dsg.kplugin.actions.migration
 
-import com.dsg.kplugin.common.CREATE_MIGRATION_TITLE
+import com.dsg.kplugin.common.constants.CREATE_MIGRATION_TITLE
 import com.dsg.kplugin.model.enums.BumpType
-import com.dsg.kplugin.service.MigrationService
+import com.dsg.kplugin.service.migration.MigrationService
 import com.dsg.kplugin.service.versioning.VersionService
 import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.AnAction

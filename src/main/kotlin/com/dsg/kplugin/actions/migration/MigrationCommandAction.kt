@@ -1,10 +1,10 @@
-package com.dsg.kplugin.actions
+package com.dsg.kplugin.actions.migration
 
-import com.dsg.kplugin.common.MIGRATION_CREATED
-import com.dsg.kplugin.common.MIGRATION_CREATE_ERROR
-import com.dsg.kplugin.common.SUCCESS
+import com.dsg.kplugin.common.constants.MIGRATION_CREATED
+import com.dsg.kplugin.common.constants.MIGRATION_CREATE_ERROR
+import com.dsg.kplugin.common.constants.SUCCESS
 import com.dsg.kplugin.model.enums.BumpType
-import com.dsg.kplugin.service.MigrationService
+import com.dsg.kplugin.service.migration.MigrationService
 import com.dsg.kplugin.service.versioning.VersionService
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.command.WriteCommandAction

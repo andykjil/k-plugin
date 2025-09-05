@@ -1,4 +1,4 @@
-package com.dsg.kplugin.common
+package com.dsg.kplugin.common.utils
 
 fun String.camelToSnakeCase(): String {
     return this
