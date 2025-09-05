@@ -1,7 +1,6 @@
 package com.dsg.kplugin.service.migration
 
-import com.dsg.kplugin.common.constants.CHANGELOG_PATH
-import com.dsg.kplugin.common.constants.MIGRATION_DIRECTORY
+import com.dsg.kplugin.common.constants.Migration
 import com.dsg.kplugin.service.migration.generator.ChangelogGenerator
 import com.dsg.kplugin.service.migration.generator.MigrationBuilder
 import com.dsg.kplugin.service.migration.generator.MigrationFileGenerator
@@ -19,7 +18,7 @@ class MigrationService {
     private val rollbackGenerator: MigrationFileGenerator = RollbackGenerator()
 
     fun findDbModule(project: Project): VirtualFile? =
-        project.baseDir?.findChild(MIGRATION_DIRECTORY)
+        project.baseDir?.findChild(Migration.MIGRATION_DIRECTORY)
 
     fun createMigrationFiles(
         project: Project,
@@ -47,5 +46,5 @@ class MigrationService {
         branchName.substringAfterLast('/')
 
     fun findChangelogDir(project: Project): VirtualFile? =
-        findDbModule(project)?.findFileByRelativePath(CHANGELOG_PATH)
+        findDbModule(project)?.findFileByRelativePath(Migration.CHANGELOG_PATH)
 }

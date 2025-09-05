@@ -1,6 +1,6 @@
 package com.dsg.kplugin.components.settings.migration
 
-import com.dsg.kplugin.common.constants.K_PLUGIN_SETTINGS
+import com.dsg.kplugin.common.constants.UI
 import com.dsg.kplugin.service.versioning.GitService
 import com.dsg.kplugin.settings.MigrationPluginSettings
 import com.intellij.openapi.options.Configurable
@@ -12,7 +12,7 @@ class MigrationSettingsConfigurable(private val project: Project) : Configurable
     private var component: MigrationSettingsComponent? = null
 
     override fun getDisplayName(): @NlsContexts.ConfigurableName String =
-        K_PLUGIN_SETTINGS
+        UI.K_PLUGIN_SETTINGS
 
     override fun createComponent(): JComponent {
         val initialUser = GitService().getDefaultUserNameSync(project)

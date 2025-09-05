@@ -1,9 +1,7 @@
 package com.dsg.kplugin.ui
 
-import com.dsg.kplugin.common.constants.CREATE_MIGRATION_TITLE
-import com.dsg.kplugin.common.constants.LAST_VERSION
-import com.dsg.kplugin.common.constants.MIGRATION_CREATED
-import com.dsg.kplugin.common.constants.NEW_VERSION
+import com.dsg.kplugin.common.constants.Migration
+import com.dsg.kplugin.common.constants.UI
 import com.dsg.kplugin.model.enums.BumpType
 import com.dsg.kplugin.service.migration.MigrationService
 import com.dsg.kplugin.service.versioning.VersionService
@@ -80,15 +78,15 @@ class MigrationsPanel(
 
     private fun createVersionsPanel(): JPanel {
         val versionsPanel = JPanel(GridLayout(2, 2, 5, 5))
-        versionsPanel.add(JLabel(LAST_VERSION))
+        versionsPanel.add(JLabel(UI.LAST_VERSION))
         versionsPanel.add(lastVersionField)
-        versionsPanel.add(JLabel(NEW_VERSION))
+        versionsPanel.add(JLabel(UI.NEW_VERSION))
         versionsPanel.add(newVersionField)
         return versionsPanel
     }
 
     private fun createCreateButton(): JButton {
-        return JButton(CREATE_MIGRATION_TITLE).apply {
+        return JButton(Migration.CREATE_MIGRATION_TITLE).apply {
             addActionListener { onCreateMigration() }
         }
     }
@@ -113,7 +111,7 @@ class MigrationsPanel(
 
         migrationService.createMigrationFiles(project, changelogDir, newVersion)
         lastVersionField.text = newVersion
-        JOptionPane.showMessageDialog(this, MIGRATION_CREATED.format(newVersion))
+        JOptionPane.showMessageDialog(this, Migration.MIGRATION_CREATED.format(newVersion))
 
         selectedBump = BumpType.PATCH
         patchButton.isSelected = true

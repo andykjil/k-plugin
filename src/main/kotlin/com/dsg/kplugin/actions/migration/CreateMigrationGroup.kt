@@ -1,6 +1,6 @@
 package com.dsg.kplugin.actions.migration
 
-import com.dsg.kplugin.common.constants.CREATE_MIGRATION_TITLE
+import com.dsg.kplugin.common.constants.Migration
 import com.dsg.kplugin.model.enums.BumpType
 import com.dsg.kplugin.service.migration.MigrationService
 import com.dsg.kplugin.service.versioning.VersionService
@@ -12,7 +12,7 @@ import com.intellij.openapi.startup.StartupActivity
 
 class CreateMigrationGroup :
     ActionGroup(
-        CREATE_MIGRATION_TITLE,
+        Migration.CREATE_MIGRATION_TITLE,
         true,
     ),
     StartupActivity.DumbAware {

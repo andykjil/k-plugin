@@ -1,7 +1,6 @@
 package com.dsg.kplugin.components.settings.migration
 
-import com.dsg.kplugin.common.constants.USER_CUSTOM_CHECKBOX_TEXT
-import com.dsg.kplugin.common.constants.USER_NAME_TEXT
+import com.dsg.kplugin.common.constants.UI
 import com.dsg.kplugin.service.versioning.GitService
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
@@ -30,7 +29,7 @@ class MigrationSettingsComponent(
         minimumSize = USER_FIELD_DIMENSION
         maximumSize = USER_FIELD_DIMENSION
     }
-    private val useCustomCheckBox = JBCheckBox(USER_CUSTOM_CHECKBOX_TEXT, false)
+    private val useCustomCheckBox = JBCheckBox(UI.USER_CUSTOM_CHECKBOX_TEXT, false)
     private var gitUserName: String = initialUser
 
     private val usernameRow: JPanel
@@ -60,7 +59,7 @@ class MigrationSettingsComponent(
 
     private fun createUsernameRow(): JPanel =
         JPanel(FlowLayout(FlowLayout.LEFT, 0, 0)).apply {
-            add(JLabel(USER_NAME_TEXT))
+            add(JLabel(UI.USER_NAME_TEXT))
             add(userTextField)
             maximumSize = Dimension(Int.MAX_VALUE, USER_FIELD_DIMENSION.height)
         }

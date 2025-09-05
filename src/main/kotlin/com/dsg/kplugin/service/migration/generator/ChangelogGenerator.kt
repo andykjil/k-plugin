@@ -1,6 +1,6 @@
 package com.dsg.kplugin.service.migration.generator
 
-import com.dsg.kplugin.common.constants.CHANGELOG_CONTENT
+import com.dsg.kplugin.common.constants.Migration
 
 class ChangelogGenerator : MigrationFileGenerator {
     override fun generateContent(
@@ -9,7 +9,7 @@ class ChangelogGenerator : MigrationFileGenerator {
         sqlFileName: String,
         rollbackFileName: String,
     ): String {
-        return CHANGELOG_CONTENT.format(
+        return Migration.Templates.CHANGELOG_CONTENT.format(
             newVersion,
             userName,
             newVersion,

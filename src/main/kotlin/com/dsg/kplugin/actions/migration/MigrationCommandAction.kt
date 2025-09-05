@@ -1,8 +1,7 @@
 package com.dsg.kplugin.actions.migration
 
-import com.dsg.kplugin.common.constants.MIGRATION_CREATED
-import com.dsg.kplugin.common.constants.MIGRATION_CREATE_ERROR
-import com.dsg.kplugin.common.constants.SUCCESS
+import com.dsg.kplugin.common.constants.Migration
+import com.dsg.kplugin.common.constants.UI
 import com.dsg.kplugin.model.enums.BumpType
 import com.dsg.kplugin.service.migration.MigrationService
 import com.dsg.kplugin.service.versioning.VersionService
@@ -33,10 +32,10 @@ class MigrationCommandAction(
         WriteCommandAction.runWriteCommandAction(project) {
             try {
                 migrationService.createMigrationFiles(project, changelogDir, newVersion)
-                notify(project, MIGRATION_CREATED.format(newVersion))
-                Messages.showInfoMessage(project, MIGRATION_CREATED.format(newVersion), SUCCESS)
+                notify(project, Migration.MIGRATION_CREATED.format(newVersion))
+                Messages.showInfoMessage(project, Migration.MIGRATION_CREATED.format(newVersion), UI.SUCCESS)
             } catch (ex: Exception) {
-                notify(project, MIGRATION_CREATE_ERROR.format(newVersion, ex.message))
+                notify(project, Migration.MIGRATION_CREATE_ERROR.format(newVersion, ex.message))
             }
         }
     }

@@ -1,6 +1,6 @@
 package com.dsg.kplugin.service.versioning
 
-import com.dsg.kplugin.common.constants.CHANGELOG_DEFAULT_VERSION
+import com.dsg.kplugin.common.constants.Migration
 import com.dsg.kplugin.model.enums.BumpType
 import com.dsg.kplugin.model.version.SemanticVersion
 import com.dsg.kplugin.service.versioning.bumper.MajorVersionBumper
@@ -23,7 +23,7 @@ class VersionService {
         val subDirs = changelogDir.children.filter { it.isDirectory }.map { it.name }
         val versions = subDirs.mapNotNull { SemanticVersion.parse(it) }
         val maxVersion = comparator.maxVersion(versions)
-        return maxVersion?.toString() ?: CHANGELOG_DEFAULT_VERSION
+        return maxVersion?.toString() ?: Migration.CHANGELOG_DEFAULT_VERSION
     }
 
     fun bumpVersion(version: String, type: BumpType): String {

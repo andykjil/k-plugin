@@ -1,9 +1,7 @@
 package com.dsg.kplugin.components.settings.migration
 
 import com.dsg.kplugin.actions.settings.OpenPluginSettingsAction
-import com.dsg.kplugin.common.constants.TOOLBAR_LOGS_TAB_TITLE
-import com.dsg.kplugin.common.constants.TOOLBAR_LOGS_TITLE
-import com.dsg.kplugin.common.constants.TOOLBAR_MIGRATIONS_TAB_TITLE
+import com.dsg.kplugin.common.constants.UI
 import com.dsg.kplugin.service.migration.MigrationService
 import com.dsg.kplugin.service.versioning.VersionService
 import com.dsg.kplugin.ui.MigrationsPanel
@@ -27,10 +25,10 @@ class MigrationToolWindowFactory : ToolWindowFactory {
         initializeServices()
 
         val migrationsPanel = createMigrationsPanel(project)
-        val migrationsContent = createContent(migrationsPanel, TOOLBAR_MIGRATIONS_TAB_TITLE)
+        val migrationsContent = createContent(migrationsPanel, UI.TOOLBAR_MIGRATIONS_TAB_TITLE)
 
         val logsPanel = createLogsPanel()
-        val logsContent = createContent(logsPanel, TOOLBAR_LOGS_TAB_TITLE)
+        val logsContent = createContent(logsPanel, UI.TOOLBAR_LOGS_TAB_TITLE)
 
         toolWindow.contentManager.addContent(migrationsContent)
         toolWindow.contentManager.addContent(logsContent)
@@ -53,7 +51,7 @@ class MigrationToolWindowFactory : ToolWindowFactory {
 
     private fun createLogsPanel(): JPanel {
         return JPanel().apply {
-            add(JLabel(TOOLBAR_LOGS_TITLE))
+            add(JLabel(UI.TOOLBAR_LOGS_TITLE))
         }
     }
 

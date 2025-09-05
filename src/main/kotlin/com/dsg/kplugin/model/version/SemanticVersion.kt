@@ -1,10 +1,10 @@
 package com.dsg.kplugin.model.version
 
-import com.dsg.kplugin.common.constants.VERSION_REGEXP
+import com.dsg.kplugin.common.constants.Migration
 
 data class SemanticVersion(val major: Int, val minor: Int, val patch: Int) : Comparable<SemanticVersion> {
     companion object {
-        private val versionRegex = Regex(VERSION_REGEXP)
+        private val versionRegex = Regex(Migration.VERSION_REGEXP)
 
         fun parse(versionString: String): SemanticVersion? {
             val match = versionRegex.matchEntire(versionString) ?: return null

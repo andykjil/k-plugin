@@ -1,7 +1,6 @@
 package com.dsg.kplugin.service.migration.generator
 
-import com.dsg.kplugin.common.constants.CHANGELOG_INCLUDE_CONTENT
-import com.dsg.kplugin.common.constants.CHANGELOG_MASTER_FILENAME
+import com.dsg.kplugin.common.constants.Migration
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtil
@@ -32,8 +31,8 @@ class MigrationBuilder(
                 parent = newChangelogDir,
                 fileName = rollbackGenerator.fileName(newVersion, prefix),
             )
-            val masterFile = changelogDir.findChild(CHANGELOG_MASTER_FILENAME)
-                ?: changelogDir.createChildData(this, CHANGELOG_MASTER_FILENAME)
+            val masterFile = changelogDir.findChild(Migration.CHANGELOG_MASTER_FILENAME)
+                ?: changelogDir.createChildData(this, Migration.CHANGELOG_MASTER_FILENAME)
 
             writeFileContent(
                 file = changelogFile,
@@ -70,7 +69,7 @@ class MigrationBuilder(
 
     private fun updateMasterFile(masterFile: VirtualFile) {
         val oldMasterContent = VfsUtil.loadText(masterFile).trimEnd()
-        val includeContent = CHANGELOG_INCLUDE_CONTENT.format("$newVersion/changelog-$newVersion.yml")
+        val includeContent = Migration.Templates.CHANGELOG_INCLUDE_CONTENT.format("$newVersion/changelog-$newVersion.yml")
         val newMasterContent = if (oldMasterContent.contains(newVersion)) {
             oldMasterContent
         } else {
