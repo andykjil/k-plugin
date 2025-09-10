@@ -1,0 +1,5 @@
+<idea-plugin>
+    <kotlin>
+        <supported>k2</supported>
+    </kotlin>
+</idea-plugin>

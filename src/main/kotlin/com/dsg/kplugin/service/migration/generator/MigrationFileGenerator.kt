@@ -6,6 +6,9 @@ interface MigrationFileGenerator {
         userName: String,
         sqlFileName: String = "",
         rollbackFileName: String = "",
+        sqlFileContent: String = "",
+        rollbackFileContent: String = "",
     ): String
+
     fun fileName(newVersion: String, prefix: String): String
 }

@@ -1,15 +1,14 @@
 <idea-plugin>
     <id>com.dsg.k-plugin</id>
-    <name>K-plugin</name>
-    <vendor url="https://www.yourcompany.com">YourCompany</vendor>
+    <name>K-a</name>
+    <vendor url="https://ww1w.yourcompany.com">YourC1ompany</vendor>
     <version>1.0.0</version>
-    <description><![CDATA[
-        Enter short description for your plugin here.<br>
-        <em>most HTML tags may be used</em>
-    ]]></description>
+    <description>k-plugin desc1231231231231231231231233333</description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>Git4Idea</depends>
+<!--    <depends>org.jetbrains.kotlin</depends>-->
+    <depends optional="true" config-file="kotlin-compatibility.xml">org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow
@@ -54,5 +53,19 @@
                 class="com.dsg.kplugin.actions.settings.OpenPluginSettingsAction"
                 text="Настройки"
                 description="Открыть настройки плагина"/>
+
+        <group id="KPluginClassActionsGroup"
+               text="K-Plugin"
+               description="Действия K-Plugin"
+               popup="true">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <action
+                    id="com.dsg.kplugin.actions.migration.GenerateSqlMigrationAction"
+                    class="com.dsg.kplugin.actions.migration.GenerateSqlMigrationAction"
+                    text="Создать Миграцию"
+                    description="Сгенерировать SQL миграцию для выбранного Kotlin класса"
+                    icon="AllIcons.Actions.Execute"/>
+            />
+        </group>
     </actions>
 </idea-plugin>

@@ -1,5 +1,6 @@
 package com.dsg.kplugin.ui
 
+import com.dsg.kplugin.common.constants.EMPTY_STRING
 import com.dsg.kplugin.common.constants.Migration
 import com.dsg.kplugin.common.constants.UI
 import com.dsg.kplugin.model.enums.BumpType
@@ -106,10 +107,9 @@ class MigrationsPanel(
     }
 
     private fun onCreateMigration() {
-        val changelogDir = migrationService.findChangelogDir(project) ?: return
         val newVersion = newVersionField.text
 
-        migrationService.createMigrationFiles(project, changelogDir, newVersion)
+        migrationService.createMigrationFiles(project, selectedBump, EMPTY_STRING, EMPTY_STRING)
         lastVersionField.text = newVersion
         JOptionPane.showMessageDialog(this, Migration.MIGRATION_CREATED.format(newVersion))
 

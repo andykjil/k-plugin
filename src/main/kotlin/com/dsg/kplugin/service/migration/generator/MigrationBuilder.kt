@@ -1,5 +1,6 @@
 package com.dsg.kplugin.service.migration.generator
 
+import com.dsg.kplugin.common.constants.EMPTY_STRING
 import com.dsg.kplugin.common.constants.Migration
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.project.Project
@@ -15,69 +16,70 @@ class MigrationBuilder(
     private val changelogGenerator: MigrationFileGenerator,
     private val sqlGenerator: MigrationFileGenerator,
     private val rollbackGenerator: MigrationFileGenerator,
+    private val sqlFileContent: String,
+    private val rollbackFileContent: String,
 ) {
+
     fun build() {
         WriteCommandAction.runWriteCommandAction(project) {
-            val newChangelogDir = createDirectory()
-            val changelogFile = createFile(
+            val newChangelogDir = changelogDir.createChildDirectory(this, newVersion)
+            createAndWriteFile(
                 parent = newChangelogDir,
-                fileName = changelogGenerator.fileName(newVersion, prefix),
+                generator = changelogGenerator,
+                version = newVersion,
+                user = userName,
+                sqlName = sqlGenerator.fileName(newVersion, prefix),
+                rollbackName = rollbackGenerator.fileName(newVersion, prefix),
             )
-            val sqlFile = createFile(
+            createAndWriteFile(
                 parent = newChangelogDir,
-                fileName = sqlGenerator.fileName(newVersion, prefix),
+                generator = sqlGenerator,
+                version = newVersion,
+                user = userName,
             )
-            val rollbackFile = createFile(
+            createAndWriteFile(
                 parent = newChangelogDir,
-                fileName = rollbackGenerator.fileName(newVersion, prefix),
+                generator = rollbackGenerator,
+                version = newVersion,
+                user = userName,
             )
             val masterFile = changelogDir.findChild(Migration.CHANGELOG_MASTER_FILENAME)
                 ?: changelogDir.createChildData(this, Migration.CHANGELOG_MASTER_FILENAME)
 
-            writeFileContent(
-                file = changelogFile,
-                content = changelogGenerator.generateContent(
-                    newVersion,
-                    userName,
-                    sqlFile.name,
-                    rollbackFile.name,
-                ),
-            )
-            writeFileContent(
-                file = sqlFile,
-                content = sqlGenerator.generateContent(newVersion, userName),
-            )
-            writeFileContent(
-                file = rollbackFile,
-                content = rollbackGenerator.generateContent(newVersion, userName),
-            )
-            updateMasterFile(masterFile)
-        }
-    }
-
-    private fun createDirectory(): VirtualFile {
-        return changelogDir.createChildDirectory(this, newVersion)
-    }
-
-    private fun createFile(parent: VirtualFile, fileName: String): VirtualFile {
-        return parent.createChildData(this, fileName)
-    }
-
-    private fun writeFileContent(file: VirtualFile, content: String) {
-        VfsUtil.saveText(file, content)
-    }
-
-    private fun updateMasterFile(masterFile: VirtualFile) {
-        val oldMasterContent = VfsUtil.loadText(masterFile).trimEnd()
-        val includeContent = Migration.Templates.CHANGELOG_INCLUDE_CONTENT.format("$newVersion/changelog-$newVersion.yml")
-        val newMasterContent = if (oldMasterContent.contains(newVersion)) {
-            oldMasterContent
-        } else {
-            buildString {
-                append(oldMasterContent)
-                append(includeContent)
+            val oldMasterContent = VfsUtil.loadText(masterFile).trimEnd()
+            val includeContent = Migration.Templates.CHANGELOG_INCLUDE_CONTENT.format("$newVersion/changelog-$newVersion.yml")
+            val newMasterContent = if (oldMasterContent.contains(newVersion)) {
+                oldMasterContent
+            } else {
+                buildString {
+                    append(oldMasterContent)
+                    append(includeContent)
+                }
             }
+            VfsUtil.saveText(masterFile, newMasterContent)
         }
-        VfsUtil.saveText(masterFile, newMasterContent)
+    }
+
+    fun createAndWriteFile(
+        parent: VirtualFile,
+        generator: MigrationFileGenerator,
+        version: String,
+        user: String,
+        sqlName: String = EMPTY_STRING,
+        rollbackName: String = EMPTY_STRING,
+        sqlContent: String = sqlFileContent,
+        rollbackContent: String = rollbackFileContent,
+    ): VirtualFile {
+        val file = parent.createChildData(this, generator.fileName(version, prefix))
+        val content = generator.generateContent(
+            version,
+            user,
+            sqlName,
+            rollbackName,
+            sqlContent,
+            rollbackContent,
+        )
+        VfsUtil.saveText(file, content)
+        return file
     }
 }

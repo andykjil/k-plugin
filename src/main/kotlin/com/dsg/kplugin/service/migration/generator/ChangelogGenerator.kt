@@ -8,6 +8,8 @@ class ChangelogGenerator : MigrationFileGenerator {
         userName: String,
         sqlFileName: String,
         rollbackFileName: String,
+        sqlFileContent: String,
+        rollbackFileContent: String,
     ): String {
         return Migration.Templates.CHANGELOG_CONTENT.format(
             newVersion,

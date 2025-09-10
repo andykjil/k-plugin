@@ -3,7 +3,6 @@ package com.dsg.kplugin.actions.migration
 import com.dsg.kplugin.common.constants.Migration
 import com.dsg.kplugin.model.enums.BumpType
 import com.dsg.kplugin.service.migration.MigrationService
-import com.dsg.kplugin.service.versioning.VersionService
 import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -17,14 +16,13 @@ class CreateMigrationGroup :
     ),
     StartupActivity.DumbAware {
 
-    private val versionService = VersionService()
     private val migrationService = MigrationService()
 
     override fun getChildren(e: AnActionEvent?): Array<out AnAction?> {
         return arrayOf(
-            MigrationCommandAction(BumpType.MAJOR, versionService, migrationService),
-            MigrationCommandAction(BumpType.MINOR, versionService, migrationService),
-            MigrationCommandAction(BumpType.PATCH, versionService, migrationService),
+            MigrationCommandAction(BumpType.MAJOR, migrationService),
+            MigrationCommandAction(BumpType.MINOR, migrationService),
+            MigrationCommandAction(BumpType.PATCH, migrationService),
         )
     }
 
